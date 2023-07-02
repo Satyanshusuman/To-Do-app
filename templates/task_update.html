@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="header-bar">
+    <a href="/home/">&#8592; Back</a>
+</div>
+
+<div class="card-body">
+    <form action="/task_update/{{task.id}}" method="post">
+        {% csrf_token %}
+        {% if messages %} 
+            {% for message in messages %}
+                <p {% if messages %} class ="alert alert-success" {% endif %}>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+        {% for fm in form %}
+            <div>
+                {{fm.label_tag}} {{fm}}
+                <small class="errors">{{fm.errors|striptags}}</small> 
+            </div>
+        {% endfor %}
+        <input class="button" type="submit" value="Save Task">
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="header-bar">
+    <h1>Register</h1>
+</div>
+<div class="card-body">
+    <form action="/user/reg/" method="post" novalidate>
+        {% csrf_token %}
+        {% for fm in form %}
+        <div>
+            {{fm.label_tag}} {{fm}}
+            <small class="errors">{{fm.errors|striptags}}</small> 
+        </div>
+        {% endfor %}
+        <br>
+        <input class="button" type="submit" value="Register Now">
+    
+        <small><p>Have an account already? <a href="/user/signin/">Login Now</a></p></small>
+     </form>
+</div>
+{% endblock content %}
